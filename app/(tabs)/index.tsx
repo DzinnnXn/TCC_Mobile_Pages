@@ -4,20 +4,65 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'rea
 const { width, height } = Dimensions.get('window');
 
 export default function Home() {
+  const isLargeScreen = width > 767;
+
   return (
     <View style={styles.container}>
 
-      <Image source={require('@/assets/images/Vector 1.png')} style={styles.vector1} />
+      <Image
+        source={require('@/assets/images/Vector 1.png')}
+        style={[
+          styles.vector1,
+          {
+            width: isLargeScreen ? width * 0.6 : width * 0.4,
+            height: isLargeScreen ? height * 0.9 : height * 0.7,
+            left: isLargeScreen ? -160 : -37
+          },
+        ]}
+      />
 
-      <Image source={require('@/assets/images/Vector 2.png')} style={styles.vector2} />
+
+      <Image
+        source={require('@/assets/images/Vector 2.png')}
+        style={[
+          styles.vector2,
+          {
+            width: isLargeScreen ? width * 0.6 : width * 0.4, 
+            height: isLargeScreen ? height * 0.9 : height * 0.7, 
+            right: isLargeScreen ? -160 : -37
+          },
+        ]}
+      />
 
       <View style={styles.background}>
         <View style={styles.content}>
-          <Text style={styles.subtitle}>Patrimônios em ordem</Text> 
-          <Image source={require('@/assets/images/Logo.png')} style={styles.logo} />
-          <Text style={styles.title}>Bem vindo!</Text>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Entrar</Text>
+          <Text style={[styles.subtitle,
+            {
+              fontSize: isLargeScreen ? 40 : 20
+            }
+          ]}>Patrimônios em ordem</Text>
+          <Image source={require('@/assets/images/Logo.png')} style={[styles.logo,
+          {
+            width: isLargeScreen ? 300 : 160,
+            height: isLargeScreen ? 120 : 55
+          }
+          ]} />
+          <Text style={[styles.title,
+            {
+              fontSize: isLargeScreen ? 46 : 26
+            }
+          ]}>Bem vindo!</Text>
+          <TouchableOpacity style={[styles.button,
+            {
+              paddingVertical: isLargeScreen ? 20 : 10,
+              paddingHorizontal: isLargeScreen ? 65 : 40,
+            }
+          ]}>
+            <Text style={[styles.buttonText,
+            {
+              fontSize: isLargeScreen ? 30 : 16
+            }
+            ]}>Entrar</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -29,7 +74,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    position: 'relative', 
+    position: 'relative',
   },
   background: {
     flex: 1,
@@ -42,17 +87,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   subtitle: {
-    fontSize: 20,
     color: '#000',
     marginBottom: 10,
   },
   logo: {
-    width: 160,
-    height: 55,
     resizeMode: 'contain',
   },
   title: {
-    fontSize: 26,
     fontWeight: 'bold',
     color: '#000',
     marginBottom: 20,
@@ -60,30 +101,21 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#A90E13',
     marginTop: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 40,
     borderRadius: 10,
   },
   buttonText: {
     color: '#fff',
-    fontSize: 16,
     fontWeight: 'bold',
   },
   vector1: {
     position: 'absolute',
-    left: -37,
     bottom: 0,
-    width: width * 0.4, 
-    height: height * 0.7, 
     resizeMode: 'contain',
-    zIndex: 1, 
+    zIndex: 1,
   },
   vector2: {
     position: 'absolute',
-    right: -37,
     top: 0,
-    width: width * 0.4, 
-    height: height * 0.7, 
     resizeMode: 'contain',
     zIndex: 1,
   },
